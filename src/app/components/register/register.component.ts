@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { User } from 'src/app/interfaces/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { passwordMatchValidator } from 'src/app/shared/password-match';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ registerForm=this.fb.group({
   });
   
 
-  constructor(private fb:FormBuilder, private authService : AuthService, private messageService:MessageService){}
+  constructor(private fb:FormBuilder, private authService : AuthService, private messageService:MessageService, private router:Router){}
   get email(){
     return this.registerForm.controls['email'];
   }
@@ -40,8 +41,14 @@ registerForm=this.fb.group({
     const postData={...this.registerForm.value};
     delete postData.confirmPassword;
     this.authService.regsiterUser(postData as User).subscribe;
-    (    Response: any) =>this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });;
-    (    error: any)=>console.log(error);
+     (response:any)=>{
+      console.log(response)
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully' });
+      this.router.navigate(['login'])};
+    (error:any)=>{
+      this.messageService.add({ severity: 'error', summary: 'Success', detail: 'Something went wrong' });
+
+    };
   }
 
 }

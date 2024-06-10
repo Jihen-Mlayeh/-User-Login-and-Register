@@ -3,6 +3,16 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    
+
+    "paths": {
+      "@angular/platform-browser": ["node_modules/@angular/platform-browser"],
+      "@angular/forms": ["node_modules/@angular/forms"],
+      "@angular/platform-browser/animations": ["node_modules/@angular/platform-browser/animations"],
+      "@angular/*": ["node_modules/@angular/*"],
+      "primeng/api": ["node_modules/primeng/api"]
+    },
+    
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

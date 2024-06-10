@@ -10,33 +10,29 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import {HttpClientModule} from '@angular/common/http'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    HomeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CardModule,
-    InputTextModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    HttpClientModule,
-    ToastModule,
-    MessageService,
-    BrowserAnimationsModule
-  ],
-  providers: [MessageService],
-  bootstrap: [AppComponent]
-})
+
+
+@NgModule({ declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        HomeComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        CardModule,
+        InputTextModule,
+        ReactiveFormsModule,
+        ButtonModule,
+        ToastModule,
+        MessageService,
+        BrowserAnimationsModule], 
+        providers: [MessageService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
