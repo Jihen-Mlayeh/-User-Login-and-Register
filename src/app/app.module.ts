@@ -10,11 +10,11 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 
@@ -24,15 +24,19 @@ import { MessageService } from 'primeng/api';
         LoginComponent,
         RegisterComponent,
         HomeComponent
+       
+
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent],
+     imports: [BrowserModule,
         AppRoutingModule,
         CardModule,
         InputTextModule,
         ReactiveFormsModule,
         ButtonModule,
         ToastModule,
-        MessageService,
+        HttpClientModule,
+       
         BrowserAnimationsModule], 
-        providers: [MessageService, provideHttpClient(withInterceptorsFromDi())] })
+        providers: [MessageService,  provideAnimationsAsync()] })
 export class AppModule { }

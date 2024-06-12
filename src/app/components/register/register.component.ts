@@ -12,43 +12,46 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-registerForm=this.fb.group({
-    fullName:['',[Validators.required,Validators.pattern(/^[a-zA-Z]+( ?:[a-zA-Z]+)*$/)]],
-    email:['',[Validators.required,Validators.email]],
-    password:['',[Validators.required]],
-    confirmPassword:['',[Validators.required]]
-  },{
+  registerForm = this.fb.group({
+    fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+( ?:[a-zA-Z]+)*$/)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    confirmPassword: ['', [Validators.required]]
+  }, {
     validators: passwordMatchValidator
   });
-  
 
-  constructor(private fb:FormBuilder, private authService : AuthService, private messageService:MessageService, private router:Router){}
-  get email(){
+  constructor(private fb: FormBuilder, private authService: AuthService, private messageService: MessageService, private router: Router) { }
+
+  get email() {
     return this.registerForm.controls['email'];
   }
 
-  get password(){
+  get password() {
     return this.registerForm.controls['password'];
   }
-  get  fullName(){
+
+  get fullName() {
     return this.registerForm.controls['fullName'];
   }
 
-  get confirmPassword(){
+  get confirmPassword() {
     return this.registerForm.controls['confirmPassword'];
   }
-  registerDetails(){
-    const postData={...this.registerForm.value};
+
+  registerDetails() {
+    const postData = { ...this.registerForm.value };
     delete postData.confirmPassword;
-    this.authService.regsiterUser(postData as User).subscribe;
-     (response:any)=>{
-      console.log(response)
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully' });
-      this.router.navigate(['login'])};
-    (error:any)=>{
-      this.messageService.add({ severity: 'error', summary: 'Success', detail: 'Something went wrong' });
-
-    };
+    this.authService.regsiterUser(postData as User).subscribe(
+      response => {
+        console.log(response);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully' });
+        this.router.navigate(['login']);
+      },
+      error => {
+        
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+      }
+    );
   }
-
 }

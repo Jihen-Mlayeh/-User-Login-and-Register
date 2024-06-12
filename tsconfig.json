@@ -10,7 +10,8 @@
       "@angular/forms": ["node_modules/@angular/forms"],
       "@angular/platform-browser/animations": ["node_modules/@angular/platform-browser/animations"],
       "@angular/*": ["node_modules/@angular/*"],
-      "primeng/api": ["node_modules/primeng/api"]
+      "primeng/api": ["node_modules/primeng/api"],
+      
     },
     
     "outDir": "./dist/out-tsc",
